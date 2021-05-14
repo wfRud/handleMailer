@@ -6,6 +6,8 @@ require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 3000;
 
+const test = "test var";
+
 app.use(bodyParser.urlencoded({ extended: true }));
 const contactAddress = "robertpala77@gmail.com";
 const mailer = nodemailer.createTransport({
@@ -27,7 +29,7 @@ app.get("/", (req, res) => res.send("Home Page Route"));
 app.get("/contact", (req, res) =>
   res.send(
     "email is: " + process.env.GMAIL_ADDRESS + "/n",
-    "pass is: " + process.env.GMAIL_PASSWORD
+    "test var is: " + test
   )
 );
 
