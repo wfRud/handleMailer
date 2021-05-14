@@ -26,12 +26,7 @@ const mailer = nodemailer.createTransport({
 });
 
 app.get("/", (req, res) => res.send("Home Page Route"));
-app.get("/contact", (req, res) =>
-  res.send(
-    "email is: " + process.env.GMAIL_ADDRESS + "/n",
-    "test var is: " + test
-  )
-);
+app.get("/contact", (req, res) => res.send("test var is: " + test));
 
 app.post("/contact", function (req, res) {
   mailer.sendMail(
