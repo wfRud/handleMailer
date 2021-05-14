@@ -9,6 +9,9 @@ const port = process.env.PORT || 3000;
 app.use(bodyParser.urlencoded({ extended: true }));
 const contactAddress = "robertpala77@gmail.com";
 const mailer = nodemailer.createTransport({
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true,
   service: "Gmail",
   auth: {
     user: process.env.GMAIL_ADDRESS,
@@ -30,7 +33,6 @@ app.post("/contact", function (req, res) {
     function (err, info) {
       if (err) return res.status(500).send(err);
       res.json({ success: true });
-      console.log("mail wysłany");
     }
   );
 });
