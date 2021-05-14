@@ -16,6 +16,8 @@ const mailer = nodemailer.createTransport({
   },
 });
 
+app.get("/", (req, res) => res.send("Home Page Route"));
+
 app.post("/contact", function (req, res) {
   mailer.sendMail(
     {
