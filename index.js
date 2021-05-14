@@ -4,6 +4,8 @@ const nodemailer = require("nodemailer");
 require("dotenv").config();
 
 const app = express();
+const port = process.env.PORT || 3000;
+
 app.use(bodyParser.urlencoded({ extended: true }));
 const contactAddress = "robertpala77@gmail.com";
 const mailer = nodemailer.createTransport({
@@ -29,4 +31,4 @@ app.post("/contact", function (req, res) {
     }
   );
 });
-app.listen(3000, () => console.log("serwer działa"));
+app.listen(port, () => console.log("serwer działa"));
