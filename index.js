@@ -17,6 +17,10 @@ const mailer = nodemailer.createTransport({
     user: process.env.GMAIL_ADDRESS,
     pass: process.env.GMAIL_PASSWORD,
   },
+  tls: {
+    // do not fail on invalid certs
+    rejectUnauthorized: false,
+  },
 });
 
 app.get("/", (req, res) => res.send("Home Page Route"));
