@@ -23,6 +23,10 @@ const mailer = nodemailer.createTransport({
   },
 });
 
+app.get("/contact", function (req, res) {
+  res.send(precess.env.GMAIL_ADDRESS);
+});
+
 app.post("/contact", function (req, res) {
   const output = `
     <p>You have a new contact request</p>
