@@ -27,9 +27,7 @@ const mailer = nodemailer.createTransport({
 
 app.get("/contact", function (req, res) {
   console.log(process.env.GMAIL_ADDRESS);
-  res.send({
-    test: "Test",
-  });
+  res.send("contact");
 });
 
 app.post("/contact", function (req, res) {
