@@ -6,8 +6,6 @@ require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 3000;
 
-const test = "test var";
-
 app.use(bodyParser.urlencoded({ extended: true }));
 const contactAddress = "robertpala77@gmail.com";
 const mailer = nodemailer.createTransport({
@@ -25,20 +23,28 @@ const mailer = nodemailer.createTransport({
   },
 });
 
-app.get("/", (req, res) => res.send("Home Page Route"));
-app.get("/contact", (req, res) => res.send("test var is: " + test));
-
 app.post("/contact", function (req, res) {
+  const output = `
+    <p>You have a new contact request</p>
+    <h3>Contact Details</h3>
+    <ul>
+      <li>Email: ${req.body.email}</li>
+    </ul>
+    <h3>Message</h3>
+    <h5>${req.body.subject}</h5>
+    <p>${req.body.message}</p>
+  `;
   mailer.sendMail(
     {
-      from: req.body.from,
+      from: "Contact form <wojciechrudek@gmail.com>",
       to: [contactAddress],
       subject: req.body.subject || "[No subject]",
-      html: req.body.message || "[No message]",
+      html: output || "[No message]",
     },
     function (err, info) {
       if (err) return res.status(500).send(err);
-      res.json({ success: true });
+      // res.json({ success: true });
+      res.send("Email has been sent");
     }
   );
 });
